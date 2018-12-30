@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=MarkdownMaker
+Comment=Simple application to make markdown documentation
+Exec=mdmaker
+Icon=markdownmaker
+Categories=Development;
