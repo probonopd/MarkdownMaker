@@ -11,6 +11,7 @@ before_install:
 install:
   - sudo apt-get -y install qt59base qt59declarative qt59quickcontrols qt59quickcontrols2 g++-8
   - source /opt/qt*/bin/qt*-env.sh
+  - export CXX='g++-8'
 
 script:
   # AxqLib
