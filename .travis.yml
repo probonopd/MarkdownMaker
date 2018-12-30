@@ -15,12 +15,14 @@ install:
 
 script:
   # AxqLib
+  - cd ..
   - git clone "https://github.com/mmertama/AxqLib"
   - cd AxqLib
   - qmake CONFIG+=release PREFIX=/usr
   - make -j$(nproc)
   - sudo make install
   - cd ..
+  - cd MarkdownMaker
   # MarkdownMaker
   - qmake CONFIG+=release PREFIX=/usr
   - make -j$(nproc)
