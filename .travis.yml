@@ -10,7 +10,7 @@ before_install:
 
 install:
   - sudo apt-get -y install qt59base qt59declarative qt59quickcontrols qt59quickcontrols2 gcc-5 g++-5 libgl1-mesa-dev
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/c 60
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
   - source /opt/qt*/bin/qt*-env.sh
   - export CXX='g++-8'
 
