@@ -19,13 +19,15 @@ script:
   - cd ..
   - git clone "https://github.com/mmertama/AxqLib"
   - cd AxqLib
-  - qmake CONFIG+=release PREFIX=/usr
+  - qmake CONFIG+=release PREFIX=/usr spec linux-g++ CONFIG+=qtquickcompile
+  - make qmake_all
   - make -j$(nproc)
   - sudo make install
   - cd ..
   - cd MarkdownMaker
   # MarkdownMaker
-  - qmake CONFIG+=release PREFIX=/usr
+  - qmake CONFIG+=release PREFIX=/usr -spec linux-g++
+  - make qmake_all
   - make -j$(nproc)
   - make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
   - mkdir -p appdir/usr/share/applications ; cp markdownmaker.desktop appdir/usr/share/applications/
@@ -51,3 +53,26 @@ branches:
   except:
     - # Do not build tags that we create when we upload to GitHub Releases
     - /^(?i:continuous)/
+
+
+
+
+DIR="build-Axq-Desktop_Qt_5_12_0_GCC_64bit3-Release"
+if [[ -d $DIR ]]; then
+rm -rf $DIR
+fi
+mkdir $DIR
+pushd $DIR
+$QTDIR/bin/qmake ../AxqLib/Axq.pro -spec linux-g++ CONFIG+=qtquickcompiler && /usr/bin/make qmake_all
+make -j8
+popd
+
+DIR="build-mdmaker-Desktop_Qt_5_12_0_GCC_64bit3-Release"
+if [[ -d $DIR ]]; then
+rm -rf $DIR
+fi
+mkdir $DIR
+pushd $DIR
+$QTDIR/bin/qmake ../MarkdownMaker/mdmaker.pro -spec linux-g++ && /usr/bin/make qmake_all
+make -j8
+popd
